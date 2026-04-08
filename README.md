@@ -12,7 +12,7 @@ A Gradle plugin that intercepts the `publish` task and replaces default deployme
 
 ```groovy
 plugins {
-    id 'io.harness.gradle' version '1.0.0'
+    id 'io.harness.gradle' version '1.0.1'
 }
 ```
 
@@ -20,7 +20,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("io.harness.gradle") version "1.0.0"
+    id("io.harness.gradle") version "1.0.1"
 }
 ```
 
@@ -81,6 +81,8 @@ You will get the values from the Harness UI 'Set Up client' section :
 export DEPLOY_REPO_URL="https://pkg.harness.io/pkg/<ACCOUNT_ID>/<REGISTRY_NAME>/maven"
 export DEPLOY_USERNAME="your-username"
 export DEPLOY_TOKEN="your-token"
+export DEPLOYMENT_TIME=<TIME_IN_MINUTES>  # Optional: timeout in minutes (default: 120 minutes)
+export DEPLOY_THREAD_COUNT=<NUMBER_OF_THREADS>  # Optional: number of threads 
 ```
 
 #### On Windows (Command Prompt):
@@ -89,6 +91,8 @@ export DEPLOY_TOKEN="your-token"
 set DEPLOY_REPO_URL=https://pkg.harness.io/pkg/<ACCOUNT_ID>/<REGISTRY_NAME>/maven
 set DEPLOY_USERNAME=your-username
 set DEPLOY_TOKEN=your-token
+set DEPLOYMENT_TIME=<TIME_IN_MINUTES>
+set DEPLOY_THREAD_COUNT=<NUMBER_OF_THREADS>
 ```
 
 #### On Windows (PowerShell):
@@ -97,15 +101,19 @@ set DEPLOY_TOKEN=your-token
 $env:DEPLOY_REPO_URL="https://pkg.harness.io/pkg/<ACCOUNT_ID>/<REGISTRY_NAME>/maven"
 $env:DEPLOY_USERNAME="your-username"
 $env:DEPLOY_TOKEN="your-token"
+$env:DEPLOYMENT_TIME=<TIME_IN_MINUTES>
+$env:DEPLOY_THREAD_COUNT=<NUMBER_OF_THREADS>
+```
 
 ## Configuration description
 
-| Environment Variable    | Description |
-|------------------------|-------------|
-| `DEPLOY_REPO_URL`      | Repository URL for deployment |
-| `DEPLOY_USERNAME`      | Username for deployment       |
-| `DEPLOY_TOKEN`         | Token/password for deployment |
-| `DEPLOY_THREAD_COUNT`  | threads for deployment        |
+| Environment Variable    | Description | Default |
+|------------------------|----------------------------------------------|----------|
+| `DEPLOY_REPO_URL`      | Repository URL for deployment                | Required | 
+| `DEPLOY_USERNAME`      | Username for deployment                      | Required | 
+| `DEPLOY_TOKEN`         | Token/password for deployment                | Required |
+| `DEPLOY_THREAD_COUNT`  | Number of concurrent threads for deployment  | Optional |
+| `DEPLOYMENT_TIME`      | Maximum deployment execution time in minutes | Optional | 
 ```
 
 ### 5. Run Publish
@@ -116,12 +124,6 @@ Execute the publish task:
 ./gradlew publish
 ```
 
-## Contributing
 
-Refer to [CONTRIBUTING.md](https://github.com/harness/harness/blob/main/CONTRIBUTING.md)
-
-## License
-
-Apache License 2.0, see [LICENSE](https://github.com/harness/harness/blob/main/LICENSE).
 
 

@@ -23,11 +23,15 @@ public class HarnessDeploymentPlugin implements Plugin<Project> {
 
 static final ConcurrentLinkedQueue<ArtifactData> deploymentQueue = new ConcurrentLinkedQueue<>();
 private final BuildInfoCollector buildInfoCollector = new BuildInfoCollector();
-private final DeployTask deployTask = new DeployTask();
+private DeployTask deployTask;
 
     @Override
     public void apply(Project project) {
 
+        if (deployTask == null) {
+            deployTask = new DeployTask(project.getLogger());
+        }
+        
         HarnessPublishExtension extension;
 
         if (project == project.getRootProject()) {

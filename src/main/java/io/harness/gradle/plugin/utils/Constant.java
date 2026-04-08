@@ -12,4 +12,9 @@ public class Constant {
     public static final String HARNESS_UNABLE_TO_VERIFY = "Harness Plugin :: Unable to verify repository connection";
     public static final String DEPLOYEMENT_COMPLETE = "\n--- HARNESS  DEPLOYMENT COMPLETE ---";
     public static final String DEPLOYEMENT_STARTED = "\n--- STARTING HARNESS BATCH DEPLOYMENT ---";
+
+
+    public static final long  DEFAULT_EXECUTOR_TIME = 120;
+    public static final long  DEFAULT_EXECUTOR_MINTIME = 15;
+    public static final long  DEFAULT_EXECUTOR_MAXTIME = 300;
 }
